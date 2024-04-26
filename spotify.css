@@ -1,32 +1,51 @@
+/* main body start */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+*{
+    margin:0;
+    padding: 0;
+    font-family: "poppins";
+}
+
 body{
-    background-color: black;
+    /* background-color: black; */
     color:white;
 
 }
 
-.border{
-    border: 2px solid skyblue
-}
-
-.flex{
-    display: flex;
-}
-
-.justify-center{
-    justify-content: center;
-}
-
-.item-center{
-    align-items: center;
-}
-
 .left{
-    width: 25vw;
+    width: 23vw;
+    /* height: 98vh; */
+    padding: 10px;
+    font-weight: 600;
 
-    background-color: rgb(255, 255, 255);
 }
 
 .right{ 
-    width: 75vw;
-    background-color: rgb(255, 255, 255);
+    width: 76vw;
+    height: 98vh;
+}
+
+/* code for home inside left */
+.home{
+    border: 2px solid white;
+    padding: 30px;
+}
+
+.home ul li{
+    display: flex;
+    gap: 15px;
+    width: 24px;
+    padding: 8px;
+}
+/* code for library inside left */
+.library{
+    border: 2px solid white;
+}
+
+.library-top{
+    border: 2px solid white;
+    display: flex;
+    gap: 8px;
+    width: 100%;
 }

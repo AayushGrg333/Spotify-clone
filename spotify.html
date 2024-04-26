@@ -1,14 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="spotify.css">
+    <link rel="stylesheet" href="utility.css">
     <script src="spotify.js"></script>
 </head>
+
 <body>
-    <div class="left border"></div>
-    <div class="right border"></div>
+    <div class="container flex bg-black">
+        <div class="left">
+            <div class="home m1 rounded bg-grey p1">
+                <ul>
+                    <li><img class="invert-color" src="assets/SVG/logo.svg" alt="spotify-logo"></li>
+                    <li><img class="invert-color" src="assets/SVG/home.svg" alt="home-icon">Home</li>
+                    <li><img class="invert-color" src="assets/SVG/search.svg" alt="search-icon">Search</li>
+                </ul>
+            </div>
+            <div class="library rounded bg-grey m1 p1">
+                <div class="library-top">
+                    <img src="assets/SVG/library.svg" alt="library-logo">
+                    <p>Your library</p>
+                </div>
+            </div>
+        </div>
+        <div class="right border bg-black"></div>
+    </div>
 </body>
+
 </html>
