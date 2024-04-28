@@ -218,23 +218,18 @@ body {
 .playbar {
     position: absolute;
     bottom: 1;
-    background-color: rgb(0, 0, 0);
+    background-color: #101010;
     width: 98.2%;
     padding: 10px;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    gap: 14px;
-}
-
-.seekbar{
-    height: 3px;
-    width: 50%;
-    background-color: white;
-    border-radius: 10px;
-    bottom: 0;
-    right: 0;
+    gap: 15px;
+    height: 65px;
+    max-height: 65px;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
 }
 
 
@@ -302,4 +297,26 @@ body {
 
 .songlibrary ul li:hover{
     background-color: rgba(61, 61, 61, 0.334);
+}
+
+
+/* right seekbar */
+.seekbar{
+    height: 3px;
+    width: 50%;
+    background-color: white;
+    border-radius: 10px;
+    bottom: 20px;
+    position: absolute;
+}
+
+.circle{
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    top: -3px;
+    transition: left 0.5s;
+    left: 0%;
 }

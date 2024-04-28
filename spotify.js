@@ -1,3 +1,5 @@
+
+let current_song = new Audio();
 async function getsongs() {
     let a = await fetch(
         "http://192.168.18.61:3000/Spotify-clone/assets/songs/"
@@ -15,6 +17,12 @@ async function getsongs() {
         }
     }
     return songs;
+}
+
+const playmusic =(track,artist)=>{
+    // let audio = new Audio("/Spotify-clone/assets/songs/" + track + "-" + artist + ".m4a")
+    current_song.src = "/Spotify-clone/assets/songs/" + track + "-" + artist + ".m4a"
+    current_song.play()
 }
 
 async function main() {
@@ -41,6 +49,14 @@ async function main() {
                             </li>`;
     }
 
+    // event listener in all songs
+    Array.from(document.querySelector(".songlibrary").getElementsByTagName("li")).forEach(e => {
+        e.addEventListener("click", element => {
+            let songName = e.querySelector(".info").firstElementChild.innerHTML;
+            let songArtist = e.querySelector("#song-artist").innerHTML;
+            playmusic(songName, songArtist);
+        });
+    });
 
 }
 main();
