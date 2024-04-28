@@ -1,5 +1,15 @@
-
 let current_song = new Audio();
+
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+
+    const formattedMinutes = String(minutes).padStart(2, "0");
+    const formattedSeconds = String(remainingSeconds).padStart(2, "0");
+
+    return `${formattedMinutes}:${formattedSeconds}`;
+}
+
 async function getsongs() {
     let a = await fetch(
         "http://192.168.18.61:3000/Spotify-clone/assets/songs/"
@@ -19,16 +29,19 @@ async function getsongs() {
     return songs;
 }
 
-const playmusic =(track,artist)=>{
-    // let audio = new Audio("/Spotify-clone/assets/songs/" + track + "-" + artist + ".m4a")
-    current_song.src = "/Spotify-clone/assets/songs/" + track + "-" + artist + ".m4a"
-    current_song.play()
-}
+const playmusic = (track, artist) => {
+    current_song.src =
+        "/Spotify-clone/assets/songs/" + track + "-" + artist + ".m4a";
+    current_song.play();
+    const playbutton = document.getElementById("play-pause");
+    playbutton.src = "assets/SVG/pause.svg";
+    document.querySelector(".songinfo").innerHTML = track;
+    document.querySelector(".songtime").innerHTML = "00:00 / 00:00";
+};
 
 async function main() {
     // get list of all song
     let songs = await getsongs();
-    console.log(songs);
 
     let songul = document.querySelector(".songlibrary ul");
 
@@ -50,13 +63,48 @@ async function main() {
     }
 
     // event listener in all songs
-    Array.from(document.querySelector(".songlibrary").getElementsByTagName("li")).forEach(e => {
-        e.addEventListener("click", element => {
+    Array.from(
+        document.querySelector(".songlibrary").getElementsByTagName("li")
+    ).forEach((e) => {
+        e.addEventListener("click", (element) => {
             let songName = e.querySelector(".info").firstElementChild.innerHTML;
             let songArtist = e.querySelector("#song-artist").innerHTML;
             playmusic(songName, songArtist);
         });
     });
 
+    // attach an event listener to play,pause,next and previous
+    const playbutton = document.getElementById("play-pause");
+    playbutton.addEventListener("click", () => {
+        if (current_song.paused) {
+            current_song.play();
+            playbutton.src = "assets/SVG/pause.svg";
+        } else {
+            current_song.pause();
+            playbutton.src = "assets/SVG/playbutton.svg";
+        }
+    });
+
+
+    // Update the position of the seek bar circle and play the song from the clicked position
+    document.querySelector(".seekbar").addEventListener("click", (e) => {
+        const seekbarWidth = document.querySelector(".seekbar").clientWidth;
+        const clickX = e.offsetX;
+        const percentage = clickX / seekbarWidth;
+        current_song.currentTime = current_song.duration * percentage;
+    });
+
+    // Listen for the timeupdate event to update the seek bar circle position
+    current_song.addEventListener("timeupdate", () => {
+        const percentage =
+            (current_song.currentTime / current_song.duration) * 100;
+        document.querySelector(".circle").style.left = `${percentage}%`;
+
+        // Update the displayed time
+        document.querySelector(".songtime").innerHTML = `
+        ${formatTime(current_song.currentTime)} / ${formatTime(
+            current_song.duration
+        )}`;
+    });
 }
 main();

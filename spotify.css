@@ -216,13 +216,12 @@ body {
 
 /* play button for music*/
 .playbar {
-    position: absolute;
-    bottom: 1;
+    position: relative;
+    padding-top: 10px;
     background-color: #101010;
     width: 98.2%;
-    padding: 10px;
+    padding: 12px;
     display: flex;
-    justify-content: center;
     flex-direction: column;
     align-items: center;
     gap: 15px;
@@ -236,6 +235,7 @@ body {
 .songbuttons {
     display: flex;
     gap: 15px;
+    cursor: pointer;
 }
 
 
@@ -308,6 +308,7 @@ body {
     border-radius: 10px;
     bottom: 20px;
     position: absolute;
+    cursor: pointer;
 }
 
 .circle{
@@ -319,4 +320,10 @@ body {
     top: -3px;
     transition: left 0.5s;
     left: 0%;
+    cursor: pointer;
+}
+
+.detail{
+    position: absolute;
+    left:35px
 }
