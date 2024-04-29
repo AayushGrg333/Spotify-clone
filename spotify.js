@@ -143,8 +143,14 @@ async function main() {
             let [songName, songArtist] = raw_song.replace(".m4a", "").split("-");
             playmusic(songName, songArtist);
         }
+    });
 
+    // add an event to volume
+    document.querySelector("#volume-range").addEventListener("change", (e) => {
+        console.log("setting volume to",e.target.value, "/100")
+        current_song.volume = parseInt(e.target.value)/100
     });
     
+
 }
 main();

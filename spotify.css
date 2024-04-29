@@ -254,6 +254,23 @@ body {
     border-bottom-right-radius: 7px;
 }
 
+.volume{
+    cursor: pointer;
+    position: absolute;
+    right: 30px;
+    display: flex;
+    top: 15px;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+#volume-range{
+    height: 4px;
+    width: 100px;
+}
+
+
 
 .songbuttons {
     display: flex;
@@ -429,6 +446,7 @@ body {
         max-height: 55px;
     }
 
+
     .spotify-playlist>p {
         font-weight: 700;
         font-size: 19px;
@@ -493,4 +511,19 @@ body {
         transition: all 1s ease-out;
         opacity: 1;
     }
+
+    .volume{
+        right: 12px;
+        gap: 4px;
+    }
+
+    #volume-range{
+        height: 3px;
+        width: 60px;
+    }
+
+    .volume > img{
+        width: 17px;
+    }
+
 }
