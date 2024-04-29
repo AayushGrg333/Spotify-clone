@@ -1,6 +1,9 @@
 let current_song = new Audio();
-
+let songs;
 function formatTime(seconds) {
+    if(isNaN(seconds) || seconds < 0){
+        return "00:00"
+    }
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = Math.floor(seconds % 60);
 
@@ -41,8 +44,7 @@ const playmusic = (track, artist) => {
 
 async function main() {
     // get list of all song
-    let songs = await getsongs();
-
+    songs = await getsongs();
     let songul = document.querySelector(".songlibrary ul");
 
     for (const song of songs) {
@@ -115,5 +117,34 @@ async function main() {
     document.querySelector(".close").addEventListener("click",()=>{
         document.querySelector(".left").style.left = "-110%"
     })
+
+    // add an event listener to previous and next
+    let previous_button = document.getElementById("previous-song");
+    previous_button.addEventListener("click", () => {
+        let index = songs.indexOf(current_song.src);
+        let previousindex = (index - 1);
+        if (previousindex >= 0){
+            let previoussongul = songs[previousindex];
+            let decoded = decodeURIComponent(previoussongul);
+            let raw_song = decoded.split("/").pop();
+            let [songName, songArtist] = raw_song.replace(".m4a", "").split("-");
+            playmusic(songName, songArtist);
+        }
+    });
+    
+    let next_button = document.getElementById("next-song");
+    next_button.addEventListener("click", () => {
+        let index = songs.indexOf(current_song.src);
+        let nextindex = index + 1;
+        if (nextindex < songs.length){
+            let nextsongul = songs[nextindex];
+            let decoded = decodeURIComponent(nextsongul);
+            let raw_song = decoded.split("/").pop();
+            let [songName, songArtist] = raw_song.replace(".m4a", "").split("-");
+            playmusic(songName, songArtist);
+        }
+
+    });
+    
 }
 main();

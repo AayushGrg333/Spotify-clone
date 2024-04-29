@@ -360,7 +360,8 @@ body {
 
 .detail {
     position: absolute;
-    left: 35px
+    left: 35px;
+    font-size: 11px;
 }
 
 
@@ -478,5 +479,18 @@ body {
     }
     .card p:nth-child(4){
         font-size: 14px;
+    }
+
+    .play {
+        position: absolute;
+        right: 17px;
+        top: 200px;
+        opacity: 0;
+    }
+    
+    .card:hover .play {
+        top: 90px;
+        transition: all 1s ease-out;
+        opacity: 1;
     }
 }
