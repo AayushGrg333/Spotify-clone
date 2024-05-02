@@ -68,7 +68,7 @@ const playmusic = (url) => {
 
 async function displayAlbums() {
     let a = await fetch(
-        `http://192.168.18.61:3000/Spotify-clone/assets/songs/`
+        `/Spotify-clone/assets/songs/`
     );
     let response = await a.text();
     let div = document.createElement("div");
@@ -83,7 +83,7 @@ async function displayAlbums() {
             let folder_name = element.href.split("/").slice(-2)[0];
             // get the meta data of the folder
             let a = await fetch(
-                `http://192.168.18.61:3000/Spotify-clone/assets/songs/${folder_name}/info.json`
+                `/Spotify-clone/assets/songs/${folder_name}/info.json`
             );
             let response = await a.json();
             cardcontainer.innerHTML += `
